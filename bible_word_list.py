@@ -25,5 +25,3 @@ class BibleWordList:
         # making sure the list is there and words are what we expect    
     def __len__(self):
         return len(self.word_set) #gives the total number of words in the list
-    
-######################################################################
