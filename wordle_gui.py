@@ -32,13 +32,26 @@ class BibleWordleApp(ctk.CTk):
             "How to Play:\n\n"
             "1. Guess the 5-letter Bible character in 6 tries.\n"
             "2. Type your guess and press Enter.\n\n"
-            "Color Code:\n"
-            "🟩 Green: Correct letter & position.\n"
-            "🟨 Yellow: Correct letter, wrong position.\n"
-            "⬜ Gray: Letter not in the word."
+            "Color Code:"
         )
         self.instructions_label = ctk.CTkLabel(self, text=instructions, font=ctk.CTkFont(size=16), justify="left")
-        self.instructions_label.pack(pady=20)
+        self.instructions_label.pack(pady=(20, 5))
+
+        # --- Custom Color Legend ---
+        self.legend_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.legend_frame.pack(pady=5)
+
+        # Green Box
+        ctk.CTkLabel(self.legend_frame, text="", width=24, height=24, fg_color="#538d4e", corner_radius=4).grid(row=0, column=0, padx=10, pady=2)
+        ctk.CTkLabel(self.legend_frame, text="Correct letter & position", font=ctk.CTkFont(size=14)).grid(row=0, column=1, sticky="w")
+
+        # Yellow Box
+        ctk.CTkLabel(self.legend_frame, text="", width=24, height=24, fg_color="#b59f3b", corner_radius=4).grid(row=1, column=0, padx=10, pady=2)
+        ctk.CTkLabel(self.legend_frame, text="Correct letter, wrong position", font=ctk.CTkFont(size=14)).grid(row=1, column=1, sticky="w")
+
+        # Gray Box
+        ctk.CTkLabel(self.legend_frame, text="", width=24, height=24, fg_color="#3a3a3c", corner_radius=4).grid(row=2, column=0, padx=10, pady=2)
+        ctk.CTkLabel(self.legend_frame, text="Letter not in the word", font=ctk.CTkFont(size=14)).grid(row=2, column=1, sticky="w")
 
         self.start_btn = ctk.CTkButton(self, text="Start Game", font=ctk.CTkFont(size=20, weight="bold"), command=self.start_game)
         self.start_btn.pack(pady=20)
@@ -83,6 +96,7 @@ class BibleWordleApp(ctk.CTk):
     def start_game(self):
         # Hide the start screen elements
         self.instructions_label.pack_forget()
+        self.legend_frame.pack_forget()
         self.start_btn.pack_forget()
         
         # Show the game screen elements
