@@ -21,17 +21,33 @@ class BibleWordleApp(ctk.CTk):
         self.current_row = 0
         self.current_col = 0
         self.cells = []  # This will hold all 30 label widgets for easy access later
+        self.game_started = False  # Prevents typing before the game starts
 
         # --- Create Basic UI Elements ---
         self.title_label = ctk.CTkLabel(self, text="Bible Wordle", font=ctk.CTkFont(size=32, weight="bold"))
         self.title_label.pack(pady=(40, 20))
 
+        # --- Start Screen Elements ---
+        instructions = (
+            "How to Play:\n\n"
+            "1. Guess the 5-letter Bible character in 6 tries.\n"
+            "2. Type your guess and press Enter.\n\n"
+            "Color Code:\n"
+            "🟩 Green: Correct letter & position.\n"
+            "🟨 Yellow: Correct letter, wrong position.\n"
+            "⬜ Gray: Letter not in the word."
+        )
+        self.instructions_label = ctk.CTkLabel(self, text=instructions, font=ctk.CTkFont(size=16), justify="left")
+        self.instructions_label.pack(pady=20)
+
+        self.start_btn = ctk.CTkButton(self, text="Start Game", font=ctk.CTkFont(size=20, weight="bold"), command=self.start_game)
+        self.start_btn.pack(pady=20)
+
+        # --- Game Screen Elements (Created but NOT packed yet) ---
         self.info_label = ctk.CTkLabel(self, text="Type a 5-letter Bible word and press Enter!", font=ctk.CTkFont(size=16))
-        self.info_label.pack(pady=(0, 20))
 
         # --- Create the 6x5 Wordle Grid ---
         self.grid_frame = ctk.CTkFrame(self, fg_color="transparent")
-        self.grid_frame.pack(pady=10)
         
         # Loop 6 times for rows, and 5 times inside that for columns
         for row in range(6):
@@ -48,16 +64,40 @@ class BibleWordleApp(ctk.CTk):
 
         # Label to show error messages or win/loss text
         self.result_label = ctk.CTkLabel(self, text="", font=ctk.CTkFont(size=16))
-        self.result_label.pack(pady=30)
 
         self.play_again_btn = ctk.CTkButton(self, text="Play Again", command=self.reset_game)
         # We will only pack (show) this button when the game ends
+
+        # --- Action Buttons (Restart & Quit) ---
+        self.action_frame = ctk.CTkFrame(self, fg_color="transparent")
+        self.restart_btn = ctk.CTkButton(self.action_frame, text="Restart", width=120, command=self.reset_game)
+        self.restart_btn.pack(side="left", padx=10)
+        
+        self.quit_btn = ctk.CTkButton(self.action_frame, text="Quit", width=120, command=self.destroy)
+        self.quit_btn.pack(side="right", padx=10)
 
         # --- Bind Physical Keyboard Events ---
         # Tells the app to run 'handle_keypress' whenever ANY key is pressed
         self.bind("<Key>", self.handle_keypress)
 
+    def start_game(self):
+        # Hide the start screen elements
+        self.instructions_label.pack_forget()
+        self.start_btn.pack_forget()
+        
+        # Show the game screen elements
+        self.info_label.pack(pady=(0, 20))
+        self.grid_frame.pack(pady=10)
+        self.result_label.pack(pady=30)
+        self.action_frame.pack(pady=10)
+        
+        # Allow typing
+        self.game_started = True
+
     def handle_keypress(self, event):
+        if not self.game_started:
+            return  # Ignore key presses if the user is still on the start screen
+            
         if self.current_row >= 6:
             return  # The game is already over
             
