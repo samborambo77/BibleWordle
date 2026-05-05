@@ -12,7 +12,7 @@ class BibleWordList:
             "NABAL", "NADAB", "NAHUM", "NAOMI", "ORNAN", "ORPHA", "PEKAH", "PETER",
             "PHEBE", "RAHAB", "REHUM", "REZIN", "RHODA", "RUFUS", "SARAH", "SARAI",
             "SHAUL", "SIHON", "SILAS", "SIMON", "TAMAR", "TITUS", "TUBAL", "URIAH",
-            "ZADOK", "ZARAH", "ZEBUL", "ZIMRI"
+            "ZARAH", "ZEBUL", "ZIMRI"
         }
 
         self.word_set = set(self.words) #making it a set for faster lookup
