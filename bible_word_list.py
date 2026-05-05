@@ -3,13 +3,16 @@ import random
 class BibleWordList:
     def __init__(self):
         self.words = {
-            "AARON", "ABNER", "ABRAM", "ADIEL", "AMASA", "AMMON", "AMNON",
-            "AMRAM", "ANNAS", "ARIEL", "ASAPH", "ASHER", "BALAK", "BARAK",
-            "CALEB", "CHLOE", "CYRUS", "DAVID", "ELIAS", "ENOCH", "GOMER",
-            "HAGAR", "HEROD", "HIRAM", "ISAAC", "JACOB", "JAMES", "JARED",
-            "JASON", "JESUS", "JOASH", "JONAH", "KORAH", "LYDIA", "MICAH",
-            "MOSES", "NAOMI", "PETER", "RAHAB", "RHODA", "SARAH", "SILAS",
-            "SIMON", "TAMAR", "TITUS", "URIAH", "ZEBUL"
+            "AARON", "ABDON", "ABIAH", "ABIHU", "ABNER", "ABRAM", "AMASA", "AMMON","AMRAM", 
+            "ANNAS", "ARIEL", "ASAPH", "ASHER", "ASHUR", "ASSUR", "BALAK", "CALEB",
+            "CHLOE", "CYRUS", "DAVID", "DINAH", "ELIAB", "ELIAS", "ELIHU", "ENOCH", "FELIX",
+            "GAIUS", "HAGAR", "HAMAN", "HEROD", "HIRAM", "HOSEA", "ISAAC", "JABEZ", "JACOB",
+            "JAMES", "JASON", "JESSE", "JESUS", "JOASH", "JONAH", "JONAS", "JORAM", "JOSES",
+            "JUBAL", "JUDAH", "JUDAS", "KORAH", "LABAN", "LYDIA", "MICAH", "MOSES",
+            "NABAL", "NADAB", "NAHUM", "NAOMI", "ORNAN", "ORPHA", "PEKAH", "PETER",
+            "PHEBE", "RAHAB", "REHUM", "REZIN", "RHODA", "RUFUS", "SARAH", "SARAI",
+            "SHAUL", "SIHON", "SILAS", "SIMON", "TAMAR", "TITUS", "TUBAL", "URIAH",
+            "ZADOK", "ZARAH", "ZEBUL", "ZIMRI"
         }
 
         self.word_set = set(self.words) #making it a set for faster lookup

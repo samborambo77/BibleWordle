@@ -8,7 +8,7 @@ class BibleWordleApp(ctk.CTk):
 
         # --- Window Setup ---
         self.title("Bible Wordle")
-        self.geometry("500x600")
+        self.geometry("600x800")
 
         # --- Initialize Game Backend ---
         # This grabs our logic from the other files so we don't have to rewrite it
