@@ -9,7 +9,7 @@ class BibleWordleApp(ctk.CTk):
 
         # --- Window Setup ---
         self.title("Bible Wordle")
-        self.geometry("500x600") 
+        self.geometry("600x800")
 
         # --- Initialize Game Backend ---
         # Grabes random word for list and hands it to puzzle
@@ -33,26 +33,13 @@ class BibleWordleApp(ctk.CTk):
             "How to Play:\n\n"
             "1. Guess the 5-letter Bible character in 6 tries.\n"
             "2. Type your guess and press Enter.\n\n"
-            "Color Code:"
+            "Color Code:\n"
+            "🟩 Green: Correct letter & position.\n"
+            "🟨 Yellow: Correct letter, wrong position.\n"
+            "⬜ Gray: Letter not in the word."
         )
         self.instructions_label = ctk.CTkLabel(self, text=instructions, font=ctk.CTkFont(size=16), justify="left")
-        self.instructions_label.pack(pady=(20, 5))
-
-        # --- Custom Color Legend ---
-        self.legend_frame = ctk.CTkFrame(self, fg_color="transparent") # Makes frame blend in background
-        self.legend_frame.pack(pady=5) # Drops 5 pixles down from instructions label
-
-        # Green Box
-        ctk.CTkLabel(self.legend_frame, text="", width=24, height=24, fg_color="#538d4e", corner_radius=4).grid(row=0, column=0, padx=10, pady=2) # self.legend_frame goes inside new invisible container
-        ctk.CTkLabel(self.legend_frame, text="Correct letter & position", font=ctk.CTkFont(size=14)).grid(row=0, column=1, sticky="w")
-
-        # Yellow Box
-        ctk.CTkLabel(self.legend_frame, text="", width=24, height=24, fg_color="#b59f3b", corner_radius=4).grid(row=1, column=0, padx=10, pady=2)
-        ctk.CTkLabel(self.legend_frame, text="Correct letter, wrong position", font=ctk.CTkFont(size=14)).grid(row=1, column=1, sticky="w")
-
-        # Gray Box
-        ctk.CTkLabel(self.legend_frame, text="", width=24, height=24, fg_color="#3a3a3c", corner_radius=4).grid(row=2, column=0, padx=10, pady=2)
-        ctk.CTkLabel(self.legend_frame, text="Letter not in the word", font=ctk.CTkFont(size=14)).grid(row=2, column=1, sticky="w")
+        self.instructions_label.pack(pady=20)
 
         self.start_btn = ctk.CTkButton(self, text="Start Game", font=ctk.CTkFont(size=20, weight="bold"), command=self.start_game) # Start game function
         self.start_btn.pack(pady=20)
@@ -96,9 +83,8 @@ class BibleWordleApp(ctk.CTk):
 
     def start_game(self):
         # Hide the start screen elements
-        self.instructions_label.pack_forget() # Erases instructions label
-        self.legend_frame.pack_forget() # Erases legend frame
-        self.start_btn.pack_forget() # Erases start button
+        self.instructions_label.pack_forget()
+        self.start_btn.pack_forget()
         
         # Show the game screen elements
         self.info_label.pack(pady=(0, 20))
